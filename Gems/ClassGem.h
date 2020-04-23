@@ -15,6 +15,9 @@ public:
 	bool IsEmpty(void); //Check empty gems
 	void SetEmpty(void); //make gem empty
 	sf::Color GetColor(void); //returns gem's color
+	void SetColor(sf::Color newColor); //assigns new color to gem
+	void SetOutline(sf::Color newColor); //setting new color of outline
+
 
 	void DrawGem(sf::RenderWindow* window, float x, float y); //drawing the gem on field
 };

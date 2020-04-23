@@ -139,6 +139,8 @@
     <ClCompile Include="ClassField.cpp" />
     <ClCompile Include="ClassGem.cpp" />
     <ClCompile Include="GemsDeletion.cpp" />
+    <ClCompile Include="GemsDrop.cpp" />
+    <ClCompile Include="GemsSwap.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

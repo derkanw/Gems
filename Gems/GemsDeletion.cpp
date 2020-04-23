@@ -35,7 +35,7 @@ void Field::CheckField(unsigned i, unsigned j) //find neighbours of a gem which 
 bool Field::AlreadyChoose(unsigned i, unsigned j) //doesn't allow adding an already checked element to the vector
 {
 	for (unsigned k = 0; k < reiteration.size(); k++)
-		if ((i == reiteration[k][0]) && (j = reiteration[k][1]))
+		if ((i == reiteration[k][0]) && (j == reiteration[k][1]))
 			return true;
 	return false;
 }

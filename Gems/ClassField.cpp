@@ -28,11 +28,7 @@ void Field::GenerateField(void) //filling the field
 
 void Field::DrawField(sf::RenderWindow* window) //drawing field with gems
 {
-	float offsetHeight = (float)(userWindowHeight - fieldWindowHeight), offsetWidth = (float)(userWindowWidth - fieldWindowWidth), minOffset = offsetWidth/2; //to move field with gems around the window
-	if (offsetHeight / 2 < minOffset)
-		minOffset = offsetHeight / 2;
-
 	for (unsigned i = 0; i < gemsInColumn; i++)
 		for (unsigned j = 0; j < gemsInRow; j++)
-			gemsMatrix[i][j].DrawGem(window, (float)(j * fieldWindowWidth) / gemsInRow+minOffset, (float)(i * fieldWindowHeight) / gemsInColumn+offsetHeight-minOffset);
+			gemsMatrix[i][j].DrawGem(window, (float)(j * fieldWindowWidth) / gemsInRow+offsetWidth, (float)(i * fieldWindowHeight) / gemsInColumn+offsetHeight);
 }

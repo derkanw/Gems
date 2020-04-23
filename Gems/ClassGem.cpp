@@ -25,6 +25,16 @@ sf::Color Gem::GetColor(void) //returns gem's color
 	return color;
 }
 
+void Gem::SetColor(sf::Color newColor) //assigns new color to gem
+{
+	color = newColor;
+}
+
+void Gem::SetOutline(sf::Color newColor) //setting new color of outline
+{
+	outline = newColor;
+}
+
 void Gem::DrawGem(sf::RenderWindow *window, float x, float y) //drawing the gem on field
 {
 	sf::RectangleShape shape(sf::Vector2f(width, height));

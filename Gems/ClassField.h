@@ -24,4 +24,11 @@ public:
 	bool AlreadyChoose(unsigned i, unsigned j); //doesn't allow adding an already checked element to the vector
 	void DeleteChoosedGems(void); //delete compination of gems which have the same color
 	void FindGemsReiteration(void); //àind and delete gems' reiteration
+
+	bool GemsDrop(void); //upper gems drop for filling out the field
+	void FieldRefilling(void); //refilling empty cells by new gems
+
+	void SetHighlight(unsigned x, unsigned y, sf::Color newColor); //setting gem's highlighter
+	void GemsSwap(unsigned x1, unsigned y1, unsigned x2, unsigned y2); //swapping two gems
+
 };
