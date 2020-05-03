@@ -1,7 +1,9 @@
 #pragma once
+#include <memory>
+#include <SFML/Graphics.hpp>
 #include "ClassGem.h"
 #include "ClassField.h"
-#include <SFML/Graphics.hpp>
+#include "Bonus.h"
 
 extern unsigned userWindowHeight, userWindowWidth; //size of window
 extern unsigned fieldWindowHeight, fieldWindowWidth; //size of field with gems

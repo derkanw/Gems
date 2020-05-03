@@ -2,7 +2,7 @@
 
 unsigned userWindowHeight = 600, userWindowWidth = 500; //size of window
 unsigned fieldWindowHeight = 480, fieldWindowWidth = 480; //size of field with gems
-unsigned numberGemsInRow = 6, numberGemsInColumn = 5; //number of gems in row and column
+unsigned numberGemsInRow = 5, numberGemsInColumn = 6; //number of gems in row and column
 float offsetHeight, offsetWidth; //substruction between size of user's window and field's size
 
 void FieldOffset(void) //defines offsets of gem to move field with gems around the window
@@ -23,11 +23,13 @@ int main(void)
 
 	bool drop = false; //shows whether the fall of gems continues
 	bool secondClick = false; //show whether the second gem selected 
-
+	
+	std::vector<std::shared_ptr<Bonus>> bonusesMatrix;
+	unsigned bonusX, bonusY;
 	unsigned gem1X, gem1Y, gem2X, gem2Y; //keeps coordinates of two gems
 
 	sf::RenderWindow window(sf::VideoMode(userWindowWidth, userWindowHeight), "Gems");
-	Field field;
+	std::shared_ptr <Field> field(new Field());
 
 	FieldOffset();
 	while (window.isOpen())
@@ -41,12 +43,20 @@ int main(void)
 
 		window.clear();
 
+		for (unsigned k = 0; k < bonusesMatrix.size(); k++)
+			bonusesMatrix[k]->Trigger(field);
+		if (bonusesMatrix.size() > 0)
+		{
+			drop = true;
+			bonusesMatrix.clear();
+		}
+
 		//delition gems' combinations
 		if (drop == false)
-			field.FindGemsReiteration();
-		drop = field.GemsDrop();
+			field->FindGemsReiteration(bonusesMatrix);
+		drop = field->GemsDrop();
 		if (drop==false)
-			field.FieldRefilling();
+			field->FieldRefilling();
 
 		//swap gems
 		if (drop==false)
@@ -55,9 +65,9 @@ int main(void)
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 				{
 					sf::Vector2i localPosition1 = sf::Mouse::getPosition(window);
-					gem1X = (unsigned)((float)localPosition1.x / ((float)userWindowWidth / (float)numberGemsInRow+offsetWidth));
-					gem1Y = (unsigned)((float)localPosition1.y / ((float)userWindowHeight / (float)numberGemsInColumn+offsetHeight));
-					field.SetHighlight(gem1X, gem1Y, sf::Color::White);
+					gem1X = (unsigned)((float)localPosition1.x / ((float)fieldWindowWidth/ (float)numberGemsInRow)-(offsetWidth/((float)fieldWindowWidth/(float)numberGemsInRow)));
+					gem1Y = (unsigned)((float)localPosition1.y / ((float)fieldWindowHeight / (float)numberGemsInColumn) - (offsetHeight / ((float)fieldWindowHeight / (float)numberGemsInColumn)));
+					field->SetHighlight(gem1X, gem1Y, sf::Color::White);
 					secondClick = true;
 				}
 			}
@@ -65,26 +75,26 @@ int main(void)
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 				{
 					sf::Vector2i localPosition2 = sf::Mouse::getPosition(window);
-						gem2X = (unsigned)((float)localPosition2.x / ((float)userWindowWidth / (float)numberGemsInRow+offsetWidth));
-						gem2Y = (unsigned)((float)localPosition2.y / ((float)userWindowHeight / (float)numberGemsInColumn+offsetHeight));
+						gem2X = (unsigned)((float)localPosition2.x / ((float)fieldWindowWidth / (float)numberGemsInRow) - (offsetWidth / ((float)fieldWindowWidth / (float)numberGemsInRow)));
+						gem2Y = (unsigned)((float)localPosition2.y / ((float)fieldWindowHeight / (float)numberGemsInColumn) - (offsetHeight / ((float)fieldWindowHeight / (float)numberGemsInColumn)));
 						//field.SetHighlight(gem2X, gem2Y, sf::Color::Green);
 						if ((abs((int)gem2X - (int)gem1X) <= 1) && (abs((int)gem2Y - (int)gem1Y) <= 1) && !((abs((int)gem2X - (int)gem1X) == 1) && (abs((int)gem2Y - (int)gem1Y) == 1)))
 						{
-							field.GemsSwap(gem1X, gem1Y, gem2X, gem2Y);
-							field.SetHighlight(gem1X, gem1Y, sf::Color::Black);
-							field.SetHighlight(gem2X, gem2Y, sf::Color::Black);
+							field->GemsSwap(gem1X, gem1Y, gem2X, gem2Y);
+							field->SetHighlight(gem1X, gem1Y, sf::Color::Black);
+							field->SetHighlight(gem2X, gem2Y, sf::Color::Black);
 						}
 						secondClick = false;
 				}
 				else
 					if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 					{
-						field.SetHighlight(gem1X, gem1Y, sf::Color::Black);
+						field->SetHighlight(gem1X, gem1Y, sf::Color::Black);
 						secondClick = false;
 					}
 
 		//drawing field
-		field.DrawField(&window);
+		field->DrawField(&window);
 
 		sf::Clock timer; //time between frames
 		while (timer.getElapsedTime().asSeconds() < 0.25);

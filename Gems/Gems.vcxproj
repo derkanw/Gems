@@ -131,11 +131,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bonus.h" />
     <ClInclude Include="ClassField.h" />
     <ClInclude Include="ClassGem.h" />
     <ClInclude Include="Main.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="ClassField.cpp" />
     <ClCompile Include="ClassGem.cpp" />
     <ClCompile Include="GemsDeletion.cpp" />

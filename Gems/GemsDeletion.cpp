@@ -1,6 +1,5 @@
 #include "ClassField.h"
-
-std::vector <std::array <unsigned, 2>> reiteration; //vector of gems' coordinate the same color
+#include "Bonus.h"
 
 void Field::CheckField(unsigned i, unsigned j) //find neighbours of a gem which have the same color
 {
@@ -40,13 +39,37 @@ bool Field::AlreadyChoose(unsigned i, unsigned j) //doesn't allow adding an alre
 	return false;
 }
 
-void Field::DeleteChoosedGems(void) //delete compination of gems which have the same color
+void Field::DeleteChoosedGems(std::vector <std::array <unsigned, 2>> forDeletion) //delete compination of gems which have the same color
 {
-	for (unsigned k = 0; k < reiteration.size(); k++)
-		gemsMatrix[reiteration[k][0]][reiteration[k][1]].SetEmpty();
+	for (unsigned k = 0; k < forDeletion.size(); k++)
+		gemsMatrix[forDeletion[k][0]][forDeletion[k][1]].SetEmpty();
 }
 
-void Field::FindGemsReiteration(void) //find and delete gems' reiteration
+void Field::SpawnBonus(std::vector<std::shared_ptr<Bonus>> bonusesMatrix)
+{
+	unsigned bonusX, bonusY;
+	for (unsigned k=0; k<reiteration.size(); k++)
+		if (rand() % 100 < 5)
+		{
+			do
+			{
+				bonusX = reiteration[k][0] + (rand() % 3 + 1) * (int)pow(-1, rand() % 2) * (int)(width / gemsInRow);
+				bonusY = reiteration[k][1] + (rand() % 3 + 1) * (int)pow(-1, rand() % 2) * (int)(height / gemsInColumn);
+			} while ((bonusX >= width) || (bonusY >= height));
+
+			switch (rand() % 2)
+			{
+			case 0:
+				bonusesMatrix.push_back(std::make_shared<Bomb>(bonusX, bonusY));
+				break;
+			case 1:
+				//bonusesMatrix.push_back(std::make_shared<Painter>(bonusX, bonusY)));
+				break;
+			}
+		}
+}
+
+void Field::FindGemsReiteration(std::vector<std::shared_ptr<Bonus>> bonusesMatrix) //find and delete gems' reiteration
 {
 	reiteration.clear();
 	for (unsigned i = 0; i < gemsInColumn; i++)
@@ -65,6 +88,7 @@ void Field::FindGemsReiteration(void) //find and delete gems' reiteration
 			break;
 	}
 
-	DeleteChoosedGems();
+	DeleteChoosedGems(reiteration);
+	SpawnBonus(bonusesMatrix);
 }
 

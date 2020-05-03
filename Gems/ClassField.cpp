@@ -32,3 +32,13 @@ void Field::DrawField(sf::RenderWindow* window) //drawing field with gems
 		for (unsigned j = 0; j < gemsInRow; j++)
 			gemsMatrix[i][j].DrawGem(window, (float)(j * fieldWindowWidth) / gemsInRow+offsetWidth, (float)(i * fieldWindowHeight) / gemsInColumn+offsetHeight);
 }
+
+unsigned Field::GetGemsInRow(void)
+{
+	return gemsInRow;
+}
+
+unsigned Field::GetGemsInColumn(void)
+{
+	return gemsInColumn;
+}

@@ -1,2 +1,85 @@
-﻿  Main.cpp
-  Gems.vcxproj -> D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Debug\Gems.exe
+﻿  Bonus.cpp
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,55): error C2065: Bonus: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,44): error C2923: std::shared_ptr: "Bonus" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,44): error C3203: "shared_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(39,46): error C2065: Bonus: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(39,35): error C2923: std::shared_ptr: "Bonus" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(39,35): error C3203: "shared_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(23,13): error C2512: Bonus: нет подходящего конструктора по умолчанию
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(33,16): error C2512: Bonus: нет подходящего конструктора по умолчанию
+  ClassField.cpp
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(13,39): error C2065: Field: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(13,28): error C2923: std::shared_ptr: "Field" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(24,31): error C2065: Field: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(24,20): error C2923: std::shared_ptr: "Field" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(23,13): error C2512: Bonus: нет подходящего конструктора по умолчанию
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(33,16): error C2512: Bonus: нет подходящего конструктора по умолчанию
+  ClassGem.cpp
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,55): error C2065: Bonus: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,44): error C2923: std::shared_ptr: "Bonus" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,44): error C3203: "shared_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(39,46): error C2065: Bonus: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(39,35): error C2923: std::shared_ptr: "Bonus" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(39,35): error C3203: "shared_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(23,13): error C2512: Bonus: нет подходящего конструктора по умолчанию
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(33,16): error C2512: Bonus: нет подходящего конструктора по умолчанию
+  GemsDeletion.cpp
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(13,39): error C2065: Field: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(13,28): error C2923: std::shared_ptr: "Field" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(24,31): error C2065: Field: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(24,20): error C2923: std::shared_ptr: "Field" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(23,13): error C2512: Bonus: нет подходящего конструктора по умолчанию
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(33,16): error C2512: Bonus: нет подходящего конструктора по умолчанию
+  GemsDrop.cpp
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(13,39): error C2065: Field: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(13,28): error C2923: std::shared_ptr: "Field" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(24,31): error C2065: Field: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(24,20): error C2923: std::shared_ptr: "Field" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(23,13): error C2512: Bonus: нет подходящего конструктора по умолчанию
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(33,16): error C2512: Bonus: нет подходящего конструктора по умолчанию
+  GemsSwap.cpp
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(13,39): error C2065: Field: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(13,28): error C2923: std::shared_ptr: "Field" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(24,31): error C2065: Field: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(24,20): error C2923: std::shared_ptr: "Field" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(23,13): error C2512: Bonus: нет подходящего конструктора по умолчанию
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(33,16): error C2512: Bonus: нет подходящего конструктора по умолчанию
+  Main.cpp
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,55): error C2065: Bonus: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,44): error C2923: std::shared_ptr: "Bonus" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,44): error C3203: "shared_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(39,46): error C2065: Bonus: необъявленный идентификатор
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(39,35): error C2923: std::shared_ptr: "Bonus" не является допустимым аргументом типа шаблон для параметра "_Ty"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(39,35): error C3203: "shared_ptr": неспециализированный класс шаблон нельзя использовать в качестве аргумента шаблон для параметра шаблон "_Ty", требуется действительный тип
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(23,13): error C2512: Bonus: нет подходящего конструктора по умолчанию
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(33,16): error C2512: Bonus: нет подходящего конструктора по умолчанию
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Bonus.h(4,7): message : см. объявление "Bonus"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664: "void Field::FindGemsReiteration(std::vector<int,std::allocator<_Ty>>)": невозможно преобразовать аргумент 1 из "std::vector<std::shared_ptr<Bonus>,std::allocator<_Ty>>" в "std::vector<int,std::allocator<_Ty>>"
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:         with
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:         [
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:             _Ty=int
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:         ]
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:         and
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:         [
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:             _Ty=std::shared_ptr<Bonus>
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:         ]
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:         and
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:         [
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:             _Ty=int
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,44): error C2664:         ]
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\Main.cpp(56,31): message : Для выполнения данного преобразования нет доступного оператора преобразования, определенного пользователем, или вызов оператора невозможен
+  Создание кода...
+D:\Desktop\Учеба\Лабы C++\Домашние лабы\lab_d_2\Gems\ClassField.h(31,7): message : см. объявление "Field::FindGemsReiteration"
