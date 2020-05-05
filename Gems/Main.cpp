@@ -1,9 +1,35 @@
 #include "Main.h"
+#include "Bonus.h"
 
 unsigned userWindowHeight = 600, userWindowWidth = 500; //size of window
 unsigned fieldWindowHeight = 480, fieldWindowWidth = 480; //size of field with gems
 unsigned numberGemsInRow = 5, numberGemsInColumn = 6; //number of gems in row and column
 float offsetHeight, offsetWidth; //substruction between size of user's window and field's size
+
+void SpawnBonus(std::vector<std::shared_ptr<Bonus>>* bonusesMatrix, std::shared_ptr <Field> field)
+{
+	unsigned bonusX, bonusY;
+	for (unsigned k = 0; k < (field->GetReiterationVector()).size(); k++)
+		if (rand() % 100 < 50)
+		{
+			do
+			{
+				bonusX = field->GetReiterationVector()[k][1] + (rand() % 3 + 1) * (int)pow(-1, rand() % 2);
+				bonusY = field->GetReiterationVector()[k][0] + (rand() % 3 + 1) * (int)pow(-1, rand() % 2);
+			}
+			while ((bonusX >= field->GetGemsInRow()) || (bonusY >= field->GetGemsInColumn())||(field->GemIsEmpty(bonusY, bonusX)));
+
+			switch (rand() % 2) 
+			{
+			case 0:
+				bonusesMatrix->push_back(std::make_shared<Bomb>(bonusX, bonusY));
+				break;
+			case 1:
+				bonusesMatrix->push_back(std::make_shared<Painter>(bonusX, bonusY));
+				break;
+			}
+		}
+}
 
 void FieldOffset(void) //defines offsets of gem to move field with gems around the window
 {
@@ -23,13 +49,12 @@ int main(void)
 
 	bool drop = false; //shows whether the fall of gems continues
 	bool secondClick = false; //show whether the second gem selected 
-	
-	std::vector<std::shared_ptr<Bonus>> bonusesMatrix;
-	unsigned bonusX, bonusY;
+
 	unsigned gem1X, gem1Y, gem2X, gem2Y; //keeps coordinates of two gems
 
 	sf::RenderWindow window(sf::VideoMode(userWindowWidth, userWindowHeight), "Gems");
 	std::shared_ptr <Field> field(new Field());
+	std::vector<std::shared_ptr<Bonus>> bonusesMatrix;
 
 	FieldOffset();
 	while (window.isOpen())
@@ -45,6 +70,7 @@ int main(void)
 
 		for (unsigned k = 0; k < bonusesMatrix.size(); k++)
 			bonusesMatrix[k]->Trigger(field);
+
 		if (bonusesMatrix.size() > 0)
 		{
 			drop = true;
@@ -53,10 +79,16 @@ int main(void)
 
 		//delition gems' combinations
 		if (drop == false)
-			field->FindGemsReiteration(bonusesMatrix);
+		{
+			field->FindGemsReiteration();
+			//SpawnBonus(&bonusesMatrix, field);
+		}
 		drop = field->GemsDrop();
-		if (drop==false)
+		if (drop == false)
+		{
 			field->FieldRefilling();
+			SpawnBonus(&bonusesMatrix, field);
+		}
 
 		//swap gems
 		if (drop==false)
@@ -95,9 +127,11 @@ int main(void)
 
 		//drawing field
 		field->DrawField(&window);
+		for (unsigned k = 0; k < bonusesMatrix.size(); k++)
+			bonusesMatrix[k]->DrawBonus(&window, field);
 
 		sf::Clock timer; //time between frames
-		while (timer.getElapsedTime().asSeconds() < 0.25);
+		while (timer.getElapsedTime().asSeconds() < 1);
 
 		window.display();
 	}

@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "ClassGem.h"
 #include "ClassField.h"
-#include "Bonus.h"
 
 extern unsigned userWindowHeight, userWindowWidth; //size of window
 extern unsigned fieldWindowHeight, fieldWindowWidth; //size of field with gems

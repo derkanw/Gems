@@ -1,26 +1,27 @@
 #pragma once
+#include <memory>
 #include "ClassField.h"
 
 class Bonus //abstract class for game bonuses
 {
 protected:
-	unsigned x, y;
+	unsigned x, y, type;
 
 public:
-	Bonus(unsigned newX, unsigned newY); //default constructor
-	~Bonus(void) {}; //default destructor
+	Bonus(unsigned newX, unsigned newY, unsigned newType); //default constructor
+	~Bonus(void) {} //default destructor
 
-	virtual void Trigger(std::shared_ptr<Field> field) {};
-	//void DrawBonus(std::shared_ptr<Field> field); 
+	virtual void Trigger(std::shared_ptr<Field> field) = 0;
+	void DrawBonus(sf::RenderWindow* window, std::shared_ptr<Field> field); 
 };
 
 class Bomb :public Bonus
 {
 private:
-	unsigned bombedNumber = 5; //i need this?
+	unsigned bombedNumber = 5;
 
 public:
-	Bomb(void) {}; //constructor
+	Bomb(unsigned newX, unsigned newY) :Bonus(newX, newY, 0) {} //constructor
 	void Trigger(std::shared_ptr<Field> field) override;
 };
 
@@ -30,6 +31,6 @@ private:
 	unsigned paintedNumber = 2, paintedRadius = 3;
 
 public:
-	Painter(void) {}; //constructor
-	//void Trigger(std::shared_ptr<Field> field) override;
+	Painter(unsigned newX, unsigned newY) :Bonus(newX, newY, 1) {} //constructor
+	void Trigger(std::shared_ptr<Field> field) override;
 };
