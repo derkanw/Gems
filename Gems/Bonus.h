@@ -37,5 +37,8 @@ private:
 public:
     Painter(unsigned newX, unsigned newY) :Bonus(newX, newY, 1) {} //painter constructor with sending position of bonus and type of it
     unsigned Trigger(std::shared_ptr<Field> field) override; //painter triggering
+    bool GemIsBad(std::shared_ptr<Field> field, unsigned x, unsigned y, std::vector <std::array<unsigned, 2>> paintedGems); /*
+    check gems for creating painter*/
+
     ~Painter(void) {} //painter destructor
 };

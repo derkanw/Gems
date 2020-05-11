@@ -34,22 +34,39 @@ unsigned Bomb::Trigger(std::shared_ptr<Field> field) //bomb triggering
     return field->DeleteChoosedGems(bombedGems);
 }
 
+bool Painter::GemIsBad(std::shared_ptr<Field> field, unsigned x, unsigned y, std::vector <std::array<unsigned, 2>> paintedGems) /*
+check gems for creating painter*/
+{
+    bool empty = false, choosing = false;
+
+    if ((x < field->GetGemsInRow()) & (y < field->GetGemsInColumn()))
+    {
+        empty = field->GemIsEmpty(y, x);
+        choosing = field->AlreadyChoose(y, x, paintedGems);
+
+        if (empty || choosing)
+            return true;
+        else
+            return false;
+    }
+    else
+        return true;
+}
+
 unsigned Painter::Trigger(std::shared_ptr<Field> field) //painter triggering
 {
     std::vector <std::array<unsigned, 2>> paintedGems;
 
     unsigned randomX, randomY;
-    bool empty, choosing;
+
     for (unsigned i = 0; i < paintedNumber; i++)
     {
         do
         {
             randomX = x + (rand() % (paintedRadius - 1) + 2) * (int)pow(-1, rand() % 2);
             randomY = y + (rand() % (paintedRadius - 1) + 2) * (int)pow(-1, rand() % 2);
-            empty = field->GemIsEmpty(randomY, randomX);
-            choosing = field->AlreadyChoose(randomY, randomX, paintedGems);
 
-        } while ((randomX >= field->GetGemsInRow()) || (randomY >= field->GetGemsInColumn()) || (empty) || (choosing));
+        } while (GemIsBad(field, randomX, randomY, paintedGems));
 
         paintedGems.push_back({ randomY, randomX });
     }
