@@ -9,10 +9,7 @@ bool Field::NeighborIsGood(unsigned i, unsigned j, unsigned neighborI, unsigned 
     if (!AlreadyChoose(neighborI, neighborJ, reiteration))
         notChoosed = true;
 
-    if (colorIsGood & notChoosed)
-        return true;
-    else
-        return false;
+    return colorIsGood & notChoosed;
 }
 
 void Field::CheckField(unsigned i, unsigned j) //find neighbours of a gem which have the same color
@@ -64,8 +61,6 @@ unsigned Field::DeleteChoosedGems(std::vector <std::array <unsigned, 2>> forDele
 
 unsigned Field::FindGemsReiteration(void) //find and delete gems' reiteration
 {
-    bool result = false;
-
     reiteration.clear();
 
     for (unsigned i = 0; i < gemsInColumn; i++)
@@ -76,10 +71,7 @@ unsigned Field::FindGemsReiteration(void) //find and delete gems' reiteration
             CheckField(i, j);
 
             if (reiteration.size() > 2)
-            {
-                result = true;
                 break;
-            }
             else
                 if (!reiteration.empty())
                     reiteration.clear();

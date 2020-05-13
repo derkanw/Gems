@@ -33,7 +33,12 @@ public:
 
     void BonusTrigger(void); //bonus triggering
     void GemsDeletion(void); //delition gems' combinations
-    void GemsSwap(void); //changing position of two matching gems
+    
+    void SelectFirstGem(float xInMatrix, float yInMatrix); //the first click on a gem
+    void SelectSecondGem(float xInMatrix, float yInMatrix); //the second click on anther gem
+    void CancelClick(void); //cancel click on the gem
+    void GemsPermutation(void); //realizes changing of two matching gems' color
+    void Swap(void); //changing position of two matching gems
 
     void DrawGameLoop(void); //drawing all figure on the field
     void CreateText(void); //showing score

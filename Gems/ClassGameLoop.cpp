@@ -83,7 +83,7 @@ void GameLoop::GemsDeletion(void) //delition gems' combinations
     swap = false;
 
     drop = field->GemsDrop();
-    if (drop == false)
+    if (!drop)
     {
         field->FieldRefilling();
         SpawnBonus();
@@ -113,60 +113,76 @@ bool GemsIsGood(unsigned gem1X, unsigned gem1Y, unsigned gem2X, unsigned gem2Y) 
     if (!((abs((int)gem2X - (int)gem1X) == 1) && (abs((int)gem2Y - (int)gem1Y) == 1)))
         diagonalCheck = true;
 
-    if (radiusCheck & diagonalCheck)
-        return true;
-    else
-        return false;
+    return (radiusCheck & diagonalCheck);
 }
 
-void GameLoop::GemsSwap(void) //changing position of two matching gems
+void GameLoop::SelectFirstGem(float xInMatrix, float yInMatrix) //the first click on a gem
+{
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) //the first click
+    {
+        sf::Vector2i localPosition1 = sf::Mouse::getPosition(*window);
+
+        gem1X = (unsigned)((float)localPosition1.x / xInMatrix - (offsetWidth / xInMatrix));
+        gem1Y = (unsigned)((float)localPosition1.y / yInMatrix - (offsetHeight / yInMatrix));
+
+        field->SetHighlight(gem1X, gem1Y, sf::Color::White);
+        secondClick = true;
+    }
+}
+
+void GameLoop::CancelClick(void) //cancel click on the gem
+{
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+    {
+        field->SetHighlight(gem1X, gem1Y, sf::Color::Black);
+        secondClick = false;
+    }
+}
+
+void GameLoop::GemsPermutation(void) //realizes changing of two matching gems' color
+{
+    if (GemsIsGood(gem1X, gem1Y, gem2X, gem2Y))
+    {
+        field->GemsSwap(gem1X, gem1Y, gem2X, gem2Y);
+        field->SetHighlight(gem1X, gem1Y, sf::Color::Black);
+        field->SetHighlight(gem2X, gem2Y, sf::Color::Black);
+
+        swap = true;
+        firstswap = true;
+    }
+}
+
+void GameLoop::SelectSecondGem(float xInMatrix, float yInMatrix) //the second click on anther gem
+{
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) //the second click
+    {
+        sf::Vector2i localPosition2 = sf::Mouse::getPosition(*window);
+        gem2X = (unsigned)((float)localPosition2.x / xInMatrix - (offsetWidth / xInMatrix));
+        gem2Y = (unsigned)((float)localPosition2.y / yInMatrix - (offsetHeight / yInMatrix));
+
+        GemsPermutation();
+        secondClick = false;
+    }
+    else
+        CancelClick();
+}
+
+void GameLoop::Swap(void) //changing position of two matching gems
 {
     float xInMatrix = (float)fieldWindowWidth / (float)numberGemsInRow;
     float yInMatrix = (float)fieldWindowHeight / (float)numberGemsInColumn;
 
-    if (drop == false)
-        if (secondClick == false)
-        {
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) //the first click
-            {
-                sf::Vector2i localPosition1 = sf::Mouse::getPosition(*window);
-
-                gem1X = (unsigned)((float)localPosition1.x / xInMatrix - (offsetWidth / xInMatrix));
-                gem1Y = (unsigned)((float)localPosition1.y / yInMatrix - (offsetHeight / yInMatrix));
-
-                field->SetHighlight(gem1X, gem1Y, sf::Color::White);
-                secondClick = true;
-            }
-        }
+    if (!drop)
+        if (!secondClick)
+            SelectFirstGem(xInMatrix, yInMatrix);
         else
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) //the second click
-            {
-                sf::Vector2i localPosition2 = sf::Mouse::getPosition(*window);
-                gem2X = (unsigned)((float)localPosition2.x / xInMatrix - (offsetWidth / xInMatrix));
-                gem2Y = (unsigned)((float)localPosition2.y / yInMatrix - (offsetHeight / yInMatrix));
-
-                if (GemsIsGood(gem1X, gem1Y, gem2X, gem2Y))
-                {
-                    field->GemsSwap(gem1X, gem1Y, gem2X, gem2Y);
-                    field->SetHighlight(gem1X, gem1Y, sf::Color::Black);
-                    field->SetHighlight(gem2X, gem2Y, sf::Color::Black);
-
-                    swap = true;
-                    firstswap = true;
-                }
-                secondClick = false;
-            }
-            else
-                if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) //cancel click
-                {
-                    field->SetHighlight(gem1X, gem1Y, sf::Color::Black);
-                    secondClick = false;
-                }
+            SelectSecondGem(xInMatrix, yInMatrix);
 }
 
 void GameLoop::DrawGameLoop(void) //drawing all figure on the field
 {
     field->DrawField(window, offsetHeight, offsetWidth);
+
     for (unsigned k = 0; k < bonusesMatrix.size(); k++)
         bonusesMatrix[k]->DrawBonus(window, field, offsetHeight, offsetWidth);
 }
@@ -175,6 +191,7 @@ void GameLoop::CreateText(void) //showing score
 {
     sf::Font font;
     font.loadFromFile("Textures/font.ttf");
+
     sf::Text text;
     text.setFont(font);
     text.setCharacterSize(30);
@@ -219,7 +236,7 @@ void GameLoop::Start(void) //all the gameplay
 
         BonusTrigger();
         GemsDeletion();
-        GemsSwap();
+        Swap();
         DrawGameLoop();
         CreateText();
 

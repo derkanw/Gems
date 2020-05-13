@@ -41,10 +41,7 @@ void Field::GenerateField(void) //filling the field
         std::vector <Gem> temp;
 
         for (unsigned j = 0; j < gemsInRow; j++)
-        {
-            Gem gem(gemHeight, gemWidth, colorsMatrix[rand() % colorsMatrix.size()]);
-            temp.push_back(gem);
-        }
+            temp.push_back({ gemHeight, gemWidth, colorsMatrix[rand() % colorsMatrix.size()] });
 
         gemsMatrix.push_back(temp);
         temp.~vector();

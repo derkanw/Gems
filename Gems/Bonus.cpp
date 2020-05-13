@@ -44,10 +44,7 @@ check gems for creating painter*/
         empty = field->GemIsEmpty(y, x);
         choosing = field->AlreadyChoose(y, x, paintedGems);
 
-        if (empty || choosing)
-            return true;
-        else
-            return false;
+        return empty || choosing;
     }
     else
         return true;
