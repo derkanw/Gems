@@ -34,7 +34,7 @@ void Field::SetNewGemsColor(std::vector <std::array <unsigned, 2>> paintedGems, 
 
 void Field::GenerateField(void) //filling the field
 {
-    float gemHeight = (float)(height / gemsInColumn), gemWidth = (float)(width / gemsInRow);
+    float gemHeight = height / gemsInColumn, gemWidth = width / gemsInRow;
 
     for (unsigned i = 0; i < gemsInColumn; i++)
     {
@@ -55,8 +55,8 @@ void Field::DrawField(std::shared_ptr <sf::RenderWindow> window, float offsetHei
     for (unsigned i = 0; i < gemsInColumn; i++)
         for (unsigned j = 0; j < gemsInRow; j++)
         {
-            posX = (float)(j * width) / gemsInRow + offsetWidth;
-            posY = (float)(i * height) / gemsInColumn + offsetHeight;
+            posX = j * width / gemsInRow + offsetWidth;
+            posY = i * height / gemsInColumn + offsetHeight;
             gemsMatrix[i][j].DrawGem(window, posX, posY);
         }
 }

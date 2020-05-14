@@ -29,13 +29,14 @@ public:
 
     void FieldOffset(void); //defines offsets of gem to move field with gems around the window
     void Start(void); //all the gameplay
-    void SpawnBonus(void); //spawn bonus (bomb or painter) with chance 5% in radius of 3 gems around the matching gem
 
+    void SpawnBonus(void); //spawn bonus (bomb or painter) with chance 5% in radius of 3 gems around the matching gem
+    void BonusCoordinates(unsigned& bonusX, unsigned& bonusY, unsigned k); //bonus appearance coordinates generation
     void BonusTrigger(void); //bonus triggering
     void GemsDeletion(void); //delition gems' combinations
     
-    void SelectFirstGem(float xInMatrix, float yInMatrix); //the first click on a gem
-    void SelectSecondGem(float xInMatrix, float yInMatrix); //the second click on anther gem
+    void SelectFirstGem(float xInMatrix, float yInMatrix, float offsetX, float offsetY); //the first click on a gem
+    void SelectSecondGem(float xInMatrix, float yInMatrix, float offsetX, float offsetY); //the second click on anther gem
     void CancelClick(void); //cancel click on the gem
     void GemsPermutation(void); //realizes changing of two matching gems' color
     void Swap(void); //changing position of two matching gems

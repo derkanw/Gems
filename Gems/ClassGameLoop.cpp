@@ -44,18 +44,28 @@ void GameLoop::FieldOffset(void) //defines offsets of gem to move field with gem
     offsetHeight -= offsetWidth;
 }
 
+void GameLoop::BonusCoordinates(unsigned& bonusX, unsigned& bonusY, unsigned k) //bonus appearance coordinates generation
+{
+    unsigned randomOffsetX, randomOffsetY;
+
+    do
+    {
+        randomOffsetX = (rand() % 3 + 1) * (int)pow(-1, rand() % 2);
+        randomOffsetY = (rand() % 3 + 1) * (int)pow(-1, rand() % 2);
+
+        bonusX = field->GetReiterationVector()[k][1] + randomOffsetX;
+        bonusY = field->GetReiterationVector()[k][0] + randomOffsetY;
+
+    } while ((bonusX >= field->GetGemsInRow()) || (bonusY >= field->GetGemsInColumn()) || (field->GemIsEmpty(bonusY, bonusX)));
+}
+
 void GameLoop::SpawnBonus(void) //spawn bonus (bomb or painter) with some chance in radius of 3 gems around the matching gem
 {
     unsigned bonusX, bonusY;
     for (unsigned k = 0; k < (field->GetReiterationVector()).size(); k++)
         if (rand() % 100 < CHANCE_OF_BONUS)
         {
-            do
-            {
-                bonusX = field->GetReiterationVector()[k][1] + (rand() % 3 + 1) * (int)pow(-1, rand() % 2);
-                bonusY = field->GetReiterationVector()[k][0] + (rand() % 3 + 1) * (int)pow(-1, rand() % 2);
-
-            } while ((bonusX >= field->GetGemsInRow()) || (bonusY >= field->GetGemsInColumn()) || (field->GemIsEmpty(bonusY, bonusX)));
+            BonusCoordinates(bonusX, bonusY, k);
 
             switch (rand() % 2)
             {
@@ -116,14 +126,17 @@ bool GemsIsGood(unsigned gem1X, unsigned gem1Y, unsigned gem2X, unsigned gem2Y) 
     return (radiusCheck & diagonalCheck);
 }
 
-void GameLoop::SelectFirstGem(float xInMatrix, float yInMatrix) //the first click on a gem
+void GameLoop::SelectFirstGem(float xInMatrix, float yInMatrix, float offsetX, float offsetY) //the first click on a gem
 {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) //the first click
     {
         sf::Vector2i localPosition1 = sf::Mouse::getPosition(*window);
 
-        gem1X = (unsigned)((float)localPosition1.x / xInMatrix - (offsetWidth / xInMatrix));
-        gem1Y = (unsigned)((float)localPosition1.y / yInMatrix - (offsetHeight / yInMatrix));
+        float x = localPosition1.x / xInMatrix;
+        float y = localPosition1.y / yInMatrix;
+
+        gem1X = (unsigned)(x - offsetX);
+        gem1Y = (unsigned)(y - offsetY);
 
         field->SetHighlight(gem1X, gem1Y, sf::Color::White);
         secondClick = true;
@@ -152,13 +165,17 @@ void GameLoop::GemsPermutation(void) //realizes changing of two matching gems' c
     }
 }
 
-void GameLoop::SelectSecondGem(float xInMatrix, float yInMatrix) //the second click on anther gem
+void GameLoop::SelectSecondGem(float xInMatrix, float yInMatrix, float offsetX, float offsetY) //the second click on anther gem
 {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) //the second click
     {
         sf::Vector2i localPosition2 = sf::Mouse::getPosition(*window);
-        gem2X = (unsigned)((float)localPosition2.x / xInMatrix - (offsetWidth / xInMatrix));
-        gem2Y = (unsigned)((float)localPosition2.y / yInMatrix - (offsetHeight / yInMatrix));
+
+        float x = localPosition2.x / xInMatrix;
+        float y = localPosition2.y / yInMatrix;
+
+        gem2X = (unsigned)(x - offsetX);
+        gem2Y = (unsigned)(y - offsetY);
 
         GemsPermutation();
         secondClick = false;
@@ -169,14 +186,17 @@ void GameLoop::SelectSecondGem(float xInMatrix, float yInMatrix) //the second cl
 
 void GameLoop::Swap(void) //changing position of two matching gems
 {
-    float xInMatrix = (float)fieldWindowWidth / (float)numberGemsInRow;
-    float yInMatrix = (float)fieldWindowHeight / (float)numberGemsInColumn;
+    float xInMatrix = fieldWindowWidth / (float)numberGemsInRow;
+    float yInMatrix = fieldWindowHeight / (float)numberGemsInColumn;
+
+    float offsetX = offsetWidth / xInMatrix;
+    float offsetY = offsetHeight / yInMatrix;
 
     if (!drop)
         if (!secondClick)
-            SelectFirstGem(xInMatrix, yInMatrix);
+            SelectFirstGem(xInMatrix, yInMatrix, offsetX, offsetY);
         else
-            SelectSecondGem(xInMatrix, yInMatrix);
+            SelectSecondGem(xInMatrix, yInMatrix, offsetX, offsetY);
 }
 
 void GameLoop::DrawGameLoop(void) //drawing all figure on the field
@@ -209,7 +229,7 @@ void GameLoop::Win(void) //if the player won
     texture.loadFromFile("Textures/win.png");
 
     sf::RectangleShape shape(sf::Vector2f((float)fieldWindowWidth, (float)fieldWindowHeight));
-    shape.setPosition((float)offsetWidth, (float)offsetHeight);
+    shape.setPosition(offsetWidth, offsetHeight);
     shape.setTexture(&texture);
 
     window->draw(shape);

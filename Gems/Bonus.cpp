@@ -11,11 +11,11 @@ Bonus::Bonus(unsigned newX, unsigned newY, unsigned newType) //default bonus con
 void Bonus::DrawBonus(std::shared_ptr <sf::RenderWindow> window, std::shared_ptr<Field> field, float offsetHeight, float offsetWidth)/*
 drawing bomb or painter with matching texture*/
 {
-    float width = field->GetFieldWidth() / (float)field->GetGemsInRow();
-    float height = field->GetFieldHeight() / (float)field->GetGemsInColumn();
+    float width = field->GetFieldWidth() / field->GetGemsInRow();
+    float height = field->GetFieldHeight() / field->GetGemsInColumn();
 
-    float posX = (float)(x * field->GetFieldWidth()) / (float)field->GetGemsInRow() + offsetWidth;
-    float posY = (float)(y * field->GetFieldHeight()) / (float)field->GetGemsInColumn() + offsetHeight;
+    float posX = x * width + offsetWidth;
+    float posY = y * height + offsetHeight;
 
     sf::RectangleShape shape(sf::Vector2f(width, height));
     shape.setPosition(posX, posY);
